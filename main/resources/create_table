@@ -1,0 +1,27 @@
+CREATE TABLE Persons
+(
+    id       int primary key,
+    name     varchar(25) NOT NULL,
+    sex      boolean default true,
+    birthday date
+);
+
+CREATE TABLE Type_Hobbies
+(
+    id        int primary key,
+    name_type varchar(25) NOT NULL
+);
+
+CREATE TABLE Hobbies
+(
+    id          int primary key,
+    title_hobby varchar(50) NOT NULL,
+    type_hobby  int references Type_Hobbies (id)
+);
+
+CREATE TABLE Repository
+(
+    id        int primary key,
+    person_id int references Persons (id),
+    hobby_id  int references Hobbies (id)
+);

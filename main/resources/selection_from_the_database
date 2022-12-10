@@ -1,0 +1,50 @@
+SELECT name, birthday
+FROM Persons
+WHERE birthday > '1991-09-15';
+
+SELECT count(*)
+FROM Persons
+WHERE sex is true;
+
+SELECT count(*)
+FROM Persons
+WHERE sex is false;
+
+SELECT name, title_hobby
+FROM Persons e
+         JOIN Repository r ON e.id = r.person_id
+         JOIN Hobbies h ON r.hobby_id = h.id;
+
+SELECT name
+FROM Persons e
+         JOIN Repository r ON e.id = r.person_id
+         JOIN Hobbies h ON r.hobby_id = h.id
+group by name
+having count(name) > 1;
+
+SELECT DISTINCT name, name_type
+FROM Persons e
+         JOIN Repository r ON e.id = r.person_id
+         JOIN Hobbies h ON r.hobby_id = h.id
+         JOIN Type_Hobbies t ON h.type_hobby = t.id
+where t.id = 2;
+
+SELECT count(e.id)
+FROM Hobbies e
+         JOIN Type_Hobbies r ON e.type_hobby = r.id
+where r.name_type = 'active';
+
+SELECT count(e.id)
+FROM Hobbies e
+         JOIN Type_Hobbies r ON e.type_hobby = r.id
+where r.name_type = 'passive';
+
+SELECT e.title_hobby
+FROM Hobbies e
+         JOIN Type_Hobbies r ON e.type_hobby = r.id
+where r.name_type = 'active';
+
+SELECT e.title_hobby
+FROM Hobbies e
+         JOIN Type_Hobbies r ON e.type_hobby = r.id
+where r.name_type = 'passive';
